@@ -1,0 +1,41 @@
+select f.film_id, f.title  from film f ;
+select * from film f limit 5;
+select f.film_id from film f where f.film_id <4;
+select f.rating  from film f where f.rating = 'PG' or f.rating = 'G';
+SELECT * FROM actor WHERE first_name  IN ('Angela', 'Angelina', 'Audrey');
+select * from actor where  first_name = 'Julia';
+SELECT * FROM actor WHERE first_name  IN ('Chris', 'Cameron', 'Cuba');
+SELECT * FROM customer where first_name ='Jamie'and last_name ='Rice';
+select p.rental_id,  p.payment_date from payment p where p.amount <1;
+select distinct  f.rental_duration  from film f; 
+SELECT COUNT(*) FROM film WHERE rating = 'NC-17';
+SELECT COUNT(*) FROM film WHERE rating IN ('PG', 'PG-13');
+SELECT * FROM film;
+SELECT COUNT(*) FROM film WHERE rating IN ('PG', 'PG-13','NC-17') group by rating;
+SELECT  COUNT(CASE WHEN rating = 'NC-17' THEN 1 END) AS nc17_count,  COUNT(CASE WHEN rating IN ('PG', 'PG-13') THEN 1 END) AS pg_pg13_count
+FROM film WHERE rating IN ('NC-17', 'PG', 'PG-13');
+SELECT * FROM city ORDER BY country_id, city;
+select r.customer_id  from rental r order by r.return_date  desc  ; 
+select distinct r.customer_id  from rental r ;
+SELECT c.last_name , COUNT(*) as cantidad FROM customer c  GROUP BY c.last_name  HAVING COUNT(*) > 1;
+
+SELECT fa.actor_id, COUNT(*) AS cantidad_apariciones
+FROM film_actor fa 
+GROUP BY fa.actor_id 
+ORDER BY cantidad_apariciones DESC;
+
+select * from actor a where a.actor_id ='107'
+select * from country c ;
+
+SELECT c.country_id,  COUNT(*) AS cantidad_ciudades
+FROM country c 
+GROUP BY c.country_id
+ORDER BY cantidad_ciudades DESC;
+
+SELECT ROUND(AVG(rental_rate), 2) AS tarifa_promedio
+FROM film;
+
+SELECT actor_id, CONCAT(first_name, ' ', last_name) AS nombre_completo
+FROM actor
+ORDER BY LENGTH(CONCAT(first_name, ' ', last_name)) DESC
+LIMIT 10;
